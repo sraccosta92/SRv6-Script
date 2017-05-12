@@ -15,9 +15,9 @@ ip -6 addr add A::1/64 dev eth1
 ifconfig eth2 up
 ip -6 addr add C::1/64 dev eth2
 
-ip -6 addr add B::1/64 dev veth0-nvf
-ifconfig veth0-nvf hw ether 00:00:00:00:00:11
-ifconfig veth0-nvf up
+ip -6 addr add B::1/64 dev veth0-nfv
+ifconfig veth0-nfv hw ether 00:00:00:00:00:11
+ifconfig veth0-nfv up
 
 #enble IPv6 forwarding in VNF1
 ip netns exec vnf1 sysctl -w net.ipv6.conf.all.forwarding=1
