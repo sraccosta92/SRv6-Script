@@ -10,8 +10,10 @@ ip link add veth0-vnf1 type veth peer name veth0-nfv
 ip link set veth0-vnf1 netns vnf1
 # configuration of NFV node interfaces
 ifconfig lo up
+
 ifconfig eth1 up
 ip -6 addr add A::1/64 dev eth1
+
 ifconfig eth2 up
 ip -6 addr add C::1/64 dev eth2
 
@@ -30,5 +32,13 @@ ip netns exec vnf1 ifconfig veth0-vnf1 up
 # static routing configuration in VNF1
 ip netns exec vnf1 ip -6 route add A::/64 via B::1
 ip netns exec vnf1 ip -6 route add C::/64 via B::1
+
+# Insert the SR-NFV_connector kernel module
+cd /vagrant/srext/
+touch *
+make
+#modificato qui
+cd kernel/
+insmod srext.ko
 
 exit
