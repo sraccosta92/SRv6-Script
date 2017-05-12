@@ -31,4 +31,12 @@ ip netns exec vnf1 ifconfig veth0-vnf1 up
 ip netns exec vnf1 ip -6 route add A::/64 via B::1
 ip netns exec vnf1 ip -6 route add C::/64 via B::1
 
+# Insert the SR-NFV_connector kernel module
+cd /vagrant/srext/
+touch *
+make
+#modificato qui
+cd kernel/
+insmod srext.ko
+
 exit
