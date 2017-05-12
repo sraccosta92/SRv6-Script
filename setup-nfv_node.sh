@@ -10,8 +10,10 @@ ip link add veth0-vnf1 type veth peer name veth0-nfv
 ip link set veth0-vnf1 netns vnf1
 # configuration of NFV node interfaces
 ifconfig lo up
+
 ifconfig eth1 up
 ip -6 addr add A::1/64 dev eth1
+
 ifconfig eth2 up
 ip -6 addr add C::1/64 dev eth2
 
